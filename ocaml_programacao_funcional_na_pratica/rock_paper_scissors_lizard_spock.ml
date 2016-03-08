@@ -13,18 +13,24 @@
 *)
 
 type variables = Rock | Paper | Scissors | Lizard | Spock;;
-type game = {player1 : variables; player2 : variables};;
-let game_play (g : game) =
-  match g with
-    {player1 = Rock; player2 = Paper} -> Rock
-    | {player1 = Rock; player2 = Scissors} -> Rock
-    | {player1 = Rock; player2 = Lizard} -> Rock
-    | {player1 = Rock; player2 = Spock} -> Spock
-    | {player1 = Paper; player2 = Scissors} -> Scissors
-    | {player1 = Paper; player2 = Lizard} -> Lizard
-    | {player1 = Paper; player2 = Spock} -> Paper
-    | {player1 = Scissors; player2 = Lizard} -> Scissors
-    | {player1 = Scissors; player2 = Spock} -> Spock
-    | {player1 = Lizard; player2 = Spock} -> Lizard;;
 
-game_play {player1 = Rock; player2 = Spock};;
+let game_play player1 player2 =
+  match  player1, player2 with
+    Rock, Lizard -> Rock
+    | Rock, Scissors -> Rock
+    | Rock, _ -> player2
+    | Paper, Rock -> Paper
+    | Paper, Spock -> Paper
+    | Paper, _ -> player2
+    | Scissors, Paper -> Scissors
+    | Scissors, Lizard -> Scissors
+    | Scissors, _ -> player2
+    | Lizard, Spock -> Lizard
+    | Lizard, Paper -> Lizard
+    | Lizard, _ -> player2
+    | Spock, Rock -> Spock
+    | Spock, Scissors -> Spock
+    | Spock, Lizard -> Spock
+    | Spock, _ -> player2;;
+
+game_play  Spock Rock;;
